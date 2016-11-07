@@ -1,0 +1,10 @@
+# visual studio code
+.DS_Store
+.vscode
+
+# webstorm
+.idea
+
+# node.js
+node_modules
+

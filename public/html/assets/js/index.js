@@ -6,7 +6,7 @@ $(function () {
      function genUid() {
           return new Date().getTime()+""+Math.floor(Math.random()*899+100);
      }
-     function updateSysMsg(obj) {
+     function updateSysMsg(obj,type) {
          var onlineUsers = obj.onlineUsers
          //更新在线人数
          var userhtml = '';
@@ -17,9 +17,20 @@ $(function () {
                  separator = '、';
              }
          }
-         var html ='<div class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br>在线用户<br>'+obj.onlineCount+'</div>'
+         var html ='<div class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span>在线用户:'+obj.onlineCount+'</div>'
              html +='<div>在线列表：'+userhtml+'</div>'
-         $("#userlist").html(html)
+         $("#userlist").html(html);
+         var style = "am-alert";
+         var text = "加入"
+         if(type == 'logout'){
+             style = "am-alert am-alert-warning";
+             text="退出"
+         }
+         var perHtml ='<div class="'+style+'" data-am-alert="">'
+         perHtml += '<button type="button" class="am-close">×</button>'
+         perHtml += '<p><strong>'+obj.user.username+'</strong><span class="am-icon-check mr10"></span>'+text+'了聊天室</p>'
+         perHtml += '</div>'
+         $(perHtml).prependTo('#Personnel')
      }
      $(".userMsgBtn").click(function () {
          var userMessage = $(".userMessage").val();
@@ -47,7 +58,7 @@ $(function () {
          //连接websocket后端服务器
           socket = io.connect('ws://localhost:18080/');
          //告诉服务器端有用户登录
-          socket.emit('login',{userid:userid, username:username});
+          socket.emit('login',{userid:userid, username:username,login:true});
          //监听新用户登录
          socket.on('login', function(obj){
              updateSysMsg(obj, 'login');
@@ -80,7 +91,7 @@ $(function () {
          $(".userText").text("游客")
          $(".am-form-name").val("")
          $('#login-modal').modal();
-         socket.emit('logout',{userid:userid, username:username});
+         socket.emit('logout',{userid:userid, username:username,login:false});
      });
      $('#login-modal').modal();
 });

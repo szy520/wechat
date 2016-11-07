@@ -10,7 +10,6 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
 }
 
 ul {
@@ -397,3 +396,4 @@ margin:0 5px 0 10px;
   overflow: auto;
 }
 .userText{margin: 0 8px;}
+
