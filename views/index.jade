@@ -1,0 +1,81 @@
+extends layout
+
+block content
+        //if lte IE 9
+          p.browsehappy
+            | 你正在使用
+            strong 过时
+            | 的浏览器，Amaze UI 暂不支持。 请
+            a(href='http://browsehappy.com/', target='_blank') 升级浏览器
+            |   以获得更好的体验！
+        header.am-topbar.am-topbar-inverse
+            .am-topbar-brand
+                strong 聊天室
+            button.am-topbar-btn.am-topbar-toggle.am-btn.am-btn-sm.am-btn-success.am-show-sm-only(data-am-collapse="{target: '#topbar-collapse'}")
+                span.am-sr-only 导航切换
+                span.am-icon-bars
+            #topbar-collapse.am-collapse.am-topbar-collapse
+                ul.am-nav.am-nav-pills.am-topbar-nav.am-topbar-right.admin-header-list
+                    li.am-dropdown(data-am-dropdown='')
+                        a.am-dropdown-toggle(data-am-dropdown-toggle='', href='javascript:;')
+                            span.am-icon-users
+                            b.userText 游客
+                            span.am-icon-caret-down
+                        ul.am-dropdown-content
+                            li
+                                a(href='#')
+                                    span.am-icon-power-off
+                                    |  退出
+                    li.am-hide-sm-only
+                        a#admin-fullscreen(href='javascript:;')
+                            span.am-icon-arrows-alt
+                            span.admin-fullText 开启全屏
+        .am-rightContent
+            .am-cf.am-u-md-2
+                .am-panel.am-panel-default
+                    .am-panel-hd.am-cf(data-am-collapse="{target: '#collapse-panel-1'}")
+                        | 人员动态
+                        span.am-icon-chevron-down.am-fr
+                    #collapse-panel-1.am-panel-bd.am-collapse.am-in
+                        #userlist
+                        #Personnel
+            .am-cf.am-u-md-10
+                .am-panel.am-panel-default
+                    .am-panel-hd.am-cf(data-am-collapse="{target: '#collapse-panel-3'}")
+                        | 最近留言
+                        span.am-icon-chevron-down.am-fr
+                    #collapse-panel-3.am-panel-bd.am-collapse.am-in.am-cf
+                        ul#admin-content-comment.am-comments-list.admin-content-comment
+        .am-g.am-psfix
+            form.am-form(action='', data-am-validator='')
+              .am-cf.am-u-md-11
+                input.userMessage.am-form-field.am-round(type='text',minlength='1', placeholder='留言' required='')
+              .am-cf.am-u-md-1
+                button.am-btn.userMsgBtn.am-btn-primary.am-round(type='submit') 发送
+        footer.am-footer.am-footer-default(data-am-widget='footer', data-am-footer='{  }')
+            .am-footer-miscs
+                p
+                    | 由
+                    a(href='http://www.daxiangyun.com/', title='大象云', target='_blank') 大象云
+                    | 		    提供技术支持
+        // content end
+        a.am-icon-btn.am-icon-th-list.am-show-sm-only.admin-menu(href='#', data-am-offcanvas="{target: '#admin-offcanvas'}")
+        #login-modal.am-modal.am-modal-loading.am-modal-no-btn(tabindex='-1')
+          .am-modal-dialog
+            .am-modal-hd
+                | 登陆
+            .am-modal-bd
+                .am-g
+                    .am-u-md-8.am-u-sm-centered
+                        form.am-form(action='', data-am-validator='')
+                            fieldset.am-form-set
+                                input.am-form-name(type='text', minlength='1', placeholder='用户名', required='')
+                            button.am-btn.am-login.am-btn-primary.am-btn-block(type='submit') 登陆
+        //if lt IE 9
+          script(src='http://libs.baidu.com/jquery/1.11.1/jquery.min.js')
+          script(src='http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js')
+          script(src='assets/js/amazeui.ie8polyfill.min.js')
+        // [if (gte IE 9)|!(IE)] <!
+        // <![endif]
+        script(src='html/assets/js/amazeui.min.js')
+        script(src='html/assets/js/app.js')
