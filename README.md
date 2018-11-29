@@ -1,5 +1,5 @@
 # wechat
-wecha
+wechat
 
 基于socket　实现的　在线聊天
 没有写入数据库
@@ -9,4 +9,4 @@ wecha
  １．npm i
  2.npm start
  
- 有问题联系微信　13133842479
+
